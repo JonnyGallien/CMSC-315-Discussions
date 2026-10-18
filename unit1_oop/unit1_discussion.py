@@ -25,6 +25,13 @@ from copy import copy, deepcopy
 # Replace the pass statement with your implementation.
 
 class ParentClass:
+    store_name = "Some Restaurant"  # Class variable
+    def __init__(self, name, employee_id): # Constructor
+        self.name = name  # instance variable
+        self.employee_id = employee_id # Instance variable
+
+    def display_info(self):  #Display method
+        print(f"Name: {self.name}, Employee ID: {self.employee_id}, Store: {self.store_name}")
     pass
 
 
@@ -41,6 +48,15 @@ class ParentClass:
 # Replace the pass statement with your implementation.
 
 class ChildClass(ParentClass):
+    store_location = "Downtown"  # New class variable
+    def __init__(self, name, employee_id, position, salary):  # Constructor
+        super().__init__(name, employee_id)  # Call parent constructor
+        self.position = position  # New instance variable
+        self.salary = salary  # New instance variable
+
+    def display_info(self):  # Override method
+        print(f"Name: {self.name}, Employee ID: {self.employee_id}, Store: {self.store_name}, "
+              f"Position: {self.position}, Salary: {self.salary}, Location: {self.store_location}")
     pass
 
 
@@ -59,6 +75,32 @@ def demonstrate_namespaces():
     print("\n=== Namespace Demonstration ===")
     print("TODO: Implement namespace demonstration")
 
+    person1 = ChildClass("John", 101, "Manager", 60000) # Creating first object of ChildClass
+    person2 = ChildClass("Jane", 102, "Chef", 50000) # Creating second object of ChildClass
+
+    print (ChildClass.store_name)  # Accessing class variable through class
+
+    print(person1.store_name)  # Accessing class variable through object
+
+    person1.is_servesafe_certified = True  # Adding new attribute to person1
+
+    print(person1.__dict__)  # Displaying person1's namespace
+    print(person2.__dict__)  # Displaying person2's namespace
+
+    print(ChildClass.__dict__)  # Displaying class namespace
+
+"""
+Terminal Output:
+
+=== Namespace Demonstration ===
+TODO: Implement namespace demonstration
+Some Restaurant
+Some Restaurant
+{'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'is_servesafe_certified': True}
+{'name': 'Jane', 'employee_id': 102, 'position': 'Chef', 'salary': 50000}
+{'__module__': '__main__', 'store_location': 'Downtown', '__init__': <function ChildClass.__init__ at 0x10234f670>, 'display_info': <function ChildClass.display_info at 0x10234f700>, '__doc__': None}
+"""
+
 
 # TODO 4:
 # Create a function that demonstrates shallow copying and deep copying.
@@ -75,6 +117,28 @@ def demonstrate_copying():
     print("\n=== Copy Demonstration ===")
     print("TODO: Implement shallow copy and deep copy demonstration")
 
+    person1 = ChildClass("John", 101, "Manager", 60000)  # Creating an object of ChildClass
+    person1.skills = ["Leadership", "Communication"]  # Adding nested mutable data
+
+    shallow_copy_person1 = copy(person1)  # Creating a shallow copy
+
+    deep_copy_person1 = deepcopy(person1)  # Creating a deep copy
+
+    person1.skills.append("Problem Solving")  # Modifying the original object's nested data
+
+    print("Original object:", person1.__dict__)  # Displaying original object
+    print("Shallow copy:", shallow_copy_person1.__dict__)  # Displaying shallow copy
+    print("Deep copy:", deep_copy_person1.__dict__)  # Displaying deep copy
+
+"""
+Terminal Output:
+
+=== Copy Demonstration ===
+TODO: Implement shallow copy and deep copy demonstration
+Original object: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication', 'Problem Solving']}
+Shallow copy: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication', 'Problem Solving']}
+Deep copy: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication']}
+"""
 
 # TODO 5:
 # Complete the main function.
@@ -90,8 +154,13 @@ def main():
     print("=== Unit 1 OOP Assignment ===")
 
     print("\nTODO: Create and test your parent object")
+    parent_object = ParentClass("John", 101) # Creating an object of ParentClass
+    parent_object.display_info()  # Calling method from ParentClass
+
 
     print("\nTODO: Create and test your child object")
+    child_object = ChildClass("Jane", 102, "Chef", 50000) # Creating an object of ChildClass
+    child_object.display_info() # Calling overridden method from ChildClass
 
     demonstrate_namespaces()
     demonstrate_copying()
