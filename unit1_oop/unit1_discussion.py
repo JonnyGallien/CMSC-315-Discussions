@@ -32,7 +32,6 @@ class ParentClass:
 
     def display_info(self):  #Display method
         print(f"Name: {self.name}, Employee ID: {self.employee_id}, Store: {self.store_name}")
-    pass
 
 
 # TODO 2:
@@ -57,7 +56,7 @@ class ChildClass(ParentClass):
     def display_info(self):  # Override method
         print(f"Name: {self.name}, Employee ID: {self.employee_id}, Store: {self.store_name}, "
               f"Position: {self.position}, Salary: {self.salary}, Location: {self.store_location}")
-    pass
+
 
 
 # TODO 3:
@@ -138,6 +137,11 @@ TODO: Implement shallow copy and deep copy demonstration
 Original object: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication', 'Problem Solving']}
 Shallow copy: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication', 'Problem Solving']}
 Deep copy: {'name': 'John', 'employee_id': 101, 'position': 'Manager', 'salary': 60000, 'skills': ['Leadership', 'Communication']}
+
+=== Explanation ===
+Shallow Copy: The shallow copy creates a new object, but it creates references to the same nested mutable objects as the original. This means changes to the nested mutable objects in the original will show in the shallow copy.
+Deep Copy: The deep copy creates a new object and recursively copies all nested mutable objects. This means changes to the nested mutable objects in the original will NOT show in the deep copy. 
+
 """
 
 # TODO 5:
