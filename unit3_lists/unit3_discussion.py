@@ -68,11 +68,10 @@ def search_value(lst, value):
     - Return -1 if the value is not found.
     - Add comments explaining why this is a linear search and why it scans sequentially.
     """
-    if value in lst:
-        return lst.index(value)
-    else:
-        #If value is not found, return -1 to indicate that the search was unsuccessful.
-        print(f"Value {value} not found in the list.")
+    for index, item in enumerate(lst):
+        if item == value:
+            return index
+        # If the loop completes without finding the value, return -1 to indicate that the value is not present in the list.
         return -1
 
 def main():
